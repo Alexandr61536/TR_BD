@@ -1,0 +1,7 @@
+.HeaderMenu{
+    color: white;
+}
+
+.HeaderMenu * {
+    margin-left: 10px;
+}

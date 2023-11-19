@@ -17,7 +17,7 @@ app.get('/api/LED_form', (req, res) => {
     res.json(lib_send.get_form());
 });
 
-app.post('/api/LEDForm_response', (req, res) => {
-    let path = lib_process.process_form_request(req.body);
-    res.json(lib_process.generate_post_responce(path));
+app.post('/api/login', (req, res) => {
+    console.log(JSON.stringify(req.body));
+    res.json({"accepted": "y", "role": "client"});
 })
