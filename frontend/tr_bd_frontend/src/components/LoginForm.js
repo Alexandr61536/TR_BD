@@ -3,6 +3,8 @@ import './LoginForm.css'
 
 class LoginForm extends Component{
 
+    state={}
+
     sendlogin = async() => {
         await fetch("http://" + this.props.ip + ":3010/api/login", {
             method: 'POST',
@@ -16,11 +18,29 @@ class LoginForm extends Component{
                     console.log(json.role)
                     this.setState({accepted: json.accepted});
                     if (json.accepted === 'y'){
-                        console.log('123')
                         this.props.name_role_set(this.state.login, json.role);
                     }
                 });
         });        
+    }
+
+    sendregister = async() => {
+        await fetch("http://" + this.props.ip + ":3010/api/register", {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json;charser=utf-8'
+            },
+            body: JSON.stringify({"login": this.state.login, "password": this.state.password})
+        })
+        .then(responce => {
+            responce.json().then(json=>{
+                console.log(json.role)
+                this.setState({accepted: json.accepted});
+                if (json.accepted === 'y'){
+                    this.props.name_role_set(this.state.login, json.role);
+                }
+            });
+    });        
     }
 
     render(){
@@ -35,6 +55,8 @@ class LoginForm extends Component{
 
                     </input><br/>
                     <button className='send_login_button' onClick={this.sendlogin}>Login</button>
+                    <button className='send_register_button' onClick={this.sendregister}>Register</button>
+                    {this.state.accepted === 'n' ? <p className='login_status_label'> Failed to login </p> : ''}
                 </div>
                     
             </div>

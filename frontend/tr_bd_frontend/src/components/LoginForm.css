@@ -3,10 +3,6 @@
     width: 100vw;
 }
 
-.label_login{
-    
-}
-
 .inputs_container{
     padding-top: 18vh;
     margin: auto;
@@ -46,4 +42,29 @@
     height: 30px;
     border: 0px;
     margin: auto;
+}
+
+.send_register_button{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(41, 0, 78);
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    border: 0px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.login_status_label{
+    display: flex;
+    padding: 4px;
+    width: fit-content;
+    margin: auto;
+    margin-top: 30px;
+    font-size: 20px;
+    border: 3px solid rgba(41, 0, 78, 0.5);
+    border-radius: 10px;
 }

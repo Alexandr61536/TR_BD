@@ -1,0 +1,103 @@
+.MenuContainer{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.MenuTable{
+    border-radius: 30px;
+    width: 80%;
+    border: 5px solid rgb(92, 0, 173); 
+    border-spacing: 0px;
+    background-color:rgb(209, 171, 241);
+}
+
+.MenuTable tr:first-child td{
+    font-size: 30px;
+    padding: 3px;
+    border-bottom: 3px solid rgb(92, 0, 173); 
+}
+
+.MenuTable tr:first-child td{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.MenuTable tr:first-child td:first-child{
+    border-left: 0px solid rgb(92, 0, 173); 
+}
+.MenuTable tr td:last-child{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.MenuTable tr td{
+    border-bottom: 5px solid rgb(241, 229, 251);
+}
+
+.MenuTable tr:last-child td{
+    border-bottom: 0px solid rgb(241, 229, 251);
+}
+
+/* Минор - определитель при исключении прямого пути */
+
+.MenuTable tr:first-child{
+    font-size: 30px;
+}
+
+.td_dish{
+    font-size: 30px;
+}
+
+.td_fats{
+    font-size: 20px;
+} 
+.td_prot{
+    font-size: 20px;
+}
+
+.td_carb{
+    font-size: 20px;
+}
+
+.td_calo{
+    font-size: 20px;
+}
+
+.td_desc{
+    max-width: 500px;
+}
+
+.AddButton{
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(92, 0, 173);
+    border: 0px;
+    border-radius: 6px;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AddButton:disabled{
+    background-color: gray;
+}
+
+.order_button{
+    display: flex;
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    background-color: rgb(92, 0, 173);
+    border: 0px;
+    border-radius: 6px;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
