@@ -148,24 +148,31 @@ app.post('/api/register', (req, res) => {
 })
 
 app.post('/api/order', (req, res) => {
-	console.log('============================ Order ==============================');
 	order.create({
 		update_time: sequelize.fn('NOW')
 	})
 	.then(adding_order=>{
-		for (let i=0; i < req.body.length; i++)
+		for (let i=0; i < req.body.dishes.length; i++)
 		{
 			dish_order.create({
 				idorder: adding_order.idorder,
-				dish: req.body[i]
+				dish: req.body.dishes[i]
 			})
 		}
+    client.update({idorder: adding_order.idorder}, 
+      {where: {
+        login: req.body.login
+        }
+      })
 	})
 })
 
 app.get('/api/orders', (req, res) => {
-	order.findAll({raw: true}).then(order=>{
-	  res.json({data: order});
-	});
+  sequelize
+    .query("SELECT * FROM clients_orders_dishes", {
+        raw: true,
+        type: Sequelize.QueryTypes.SELECT,
+    })
+    .then((result) => res.json({data: result}));
   });
   

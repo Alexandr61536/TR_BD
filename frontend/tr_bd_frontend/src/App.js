@@ -39,7 +39,7 @@ class App extends Component {
 				logined={this.state.mode}
 			/>
         	{(this.state.mode == 'logining') ? <LoginForm ip={this.state.ip} name_role_set={(name, role)=>this.name_role_set(name, role)} /> : 
-			(this.state.user_role=='client') ? <Menu ip={this.state.ip}/> : 
+			(this.state.user_role=='client') ? <Menu ip={this.state.ip} login={this.state.user_name}/> : 
 			(this.state.user_role=='officiant') ? <Orders ip={this.state.ip}/> : ''}
       </div>
     );

@@ -23,7 +23,20 @@ class Orders extends Component{
     render(){
         return(
             <div className='OrdersContainer'>
-                {JSON.stringify(this.state.orders)}
+                <table className='OrdersTable'>
+                    <tr>
+                            <td> IDorder </td>
+                            <td> Login </td>
+                            <td> Dish </td>
+                    </tr>
+                    {this.state.orders.map(order=>(
+                        <tr> 
+                            <td className="td_idor">{order.idorder}</td> 
+                            <td className="td_logi">{order.login}</td>
+                            <td className="td_dish">{order.dish}</td> 
+                        </tr>
+                    ))}
+                </table>
             </div>
         )
     }

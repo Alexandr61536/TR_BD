@@ -33,7 +33,7 @@ class Menu extends Component{
             headers:{
                 'content-type': 'application/json;charser=utf-8'
             },
-            body: JSON.stringify(this.state.cart)
+            body: JSON.stringify({login: this.props.login, dishes: this.state.cart})
         })
     }
 
