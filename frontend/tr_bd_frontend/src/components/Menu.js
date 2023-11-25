@@ -5,15 +5,22 @@ class Menu extends Component{
 
     state={
         'menu_list': [],
-        'cart': []
+        'cart': [],
+        unfinished_orders: false
     }
 
-    componentDidMount() {
-        fetch('http://'+this.props.ip+':3010/api/Menu')
+    componentDidMount = async() => {
+        await fetch('http://'+this.props.ip+':3010/api/Menu', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json;charser=utf-8'
+            },
+            body: JSON.stringify({login: this.props.login})
+        })
         .then(res => res.json())
         .then(
             (result) => {
-                this.setState({menu_list: result.data})
+                this.setState({menu_list: result.data, unfinished_orders: result.unfinished_orders})
             },
             (error) => {
                 console.log(error);
@@ -34,7 +41,7 @@ class Menu extends Component{
                 'content-type': 'application/json;charser=utf-8'
             },
             body: JSON.stringify({login: this.props.login, dishes: this.state.cart})
-        })
+        }).then(this.setState({unfinished_orders: true}))
     }
 
     render(){
@@ -66,7 +73,11 @@ class Menu extends Component{
                         </tr>
                     ))}
                 </table>
-               <button className='order_button' onClick={this.order}>Order</button>
+               <button 
+                    className='order_button' 
+                    onClick={this.order}
+                    disabled={this.state.unfinished_orders}
+                >Order</button>
             </div>
         )
     }

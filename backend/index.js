@@ -105,18 +105,22 @@ const sequelize = new Sequelize("restaurant", "postgres", "admin", {
   sequelize.sync().then(result=>{{}
     }).catch(err=> console.log(err));
 
-  // dish.findAll({raw: true}).then(dishes=>{
-  //   console.log(dishes);
-  // })
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-app.get('/api/Menu', (req, res) => {
-  dish.findAll({raw: true}).then(dishes=>{
-    res.json({data: dishes});
-  })
+app.post('/api/Menu', (req, res) => {
+	sequelize
+	.query("SELECT * from clients_orders_dishes WHERE login = '" + req.body.login + "'", {
+		raw: true,
+		type: Sequelize.QueryTypes.SELECT,
+	})
+	.then(search_result=>{
+		dish.findAll({raw: true}).then(dishes=>{
+			res.json({data: dishes, unfinished_orders: search_result.length != 0});
+		  })
+	})
+  
 });
 
 app.post('/api/login', (req, res) => {
@@ -169,10 +173,115 @@ app.post('/api/order', (req, res) => {
 
 app.get('/api/orders', (req, res) => {
   sequelize
-    .query("SELECT * FROM clients_orders_dishes", {
+    .query("SELECT * FROM clients_orders_dishes WHERE state = 'received' ", {
         raw: true,
         type: Sequelize.QueryTypes.SELECT,
     })
     .then((result) => res.json({data: result}));
   });
+
+  app.post('/api/order_ready', (req, res) => {
+	sequelize
+    .query("UPDATE orders SET state = 'cooked', update_time = NOW() WHERE idorder = "+req.body.idorder, {
+        raw: true,
+        type: Sequelize.QueryTypes.UPDATE,
+    })
+})
+
+app.get('/api/ready_orders', (req, res) => {
+	sequelize
+	  .query("SELECT * FROM clients_orders_dishes WHERE state = 'cooked' ", {
+		  raw: true,
+		  type: Sequelize.QueryTypes.SELECT,
+	  })
+	  .then((result) => {
+		if (result.length === 0){
+			sequelize
+			.query("SELECT * FROM clients_orders_dishes WHERE state = 'got' ", {
+				raw: true,
+				type: Sequelize.QueryTypes.SELECT,
+	  		}).then((result) => {res.json({data: result})});
+		}
+		else{
+			res.json({data: result})}
+		}
+	  );
+	});
   
+	app.post('/api/order_ready', (req, res) => {
+	  sequelize
+	  .query("UPDATE orders SET state = 'cooked', update_time = NOW() WHERE idorder = "+req.body.idorder, {
+		  raw: true,
+		  type: Sequelize.QueryTypes.UPDATE,
+	  })
+  })
+
+  app.post('/api/order_payed', (req, res) => {
+	sequelize
+	.query("SELECT * from clients_orders_dishes WHERE state = 'got' and idorder = " + req.body.idorder, {
+		raw: true,
+		type: Sequelize.QueryTypes.SELECT,
+	})
+	.then((result) => {
+		if (result.length === 0){
+			sequelize
+			.query("UPDATE orders SET state = 'payed', update_time = NOW() WHERE idorder = "+req.body.idorder, {
+				raw: true,
+				type: Sequelize.QueryTypes.UPDATE,
+			})
+		}
+		else{
+			sequelize
+			.query("DELETE FROM orders WHERE idorder = "+req.body.idorder, {
+				raw: true,
+				type: Sequelize.QueryTypes.DELETE,
+			})
+		}
+	});
+})
+
+app.post('/api/orders_to_pay', (req, res) => {
+	sequelize
+	.query("SELECT * from clients_orders_dishes WHERE state = 'cooked' and login = '" + req.body.login + "'", {
+		raw: true,
+		type: Sequelize.QueryTypes.SELECT,
+	})
+	.then((result) => {
+		if (result.length > 0) {
+			res.json({body: result})
+		}
+		else{
+			sequelize
+			.query("SELECT * from clients_orders_dishes WHERE state = 'payed' and login = '" + req.body.login + "'", {
+				raw: true,
+				type: Sequelize.QueryTypes.SELECT,
+			}).then((result) => {res.json({body: result})});
+		}
+	}
+	);
+})
+
+app.post('/api/order_got', (req, res) => {
+	sequelize
+	.query("SELECT * from clients_orders_dishes WHERE state = 'payed' and idorder = " + req.body.idorder, {
+		raw: true,
+		type: Sequelize.QueryTypes.SELECT,
+	})
+	.then((result) => {
+		if (result.length === 0){
+			sequelize
+			.query("UPDATE orders SET state = 'got', update_time = NOW() WHERE idorder = "+req.body.idorder, {
+				raw: true,
+				type: Sequelize.QueryTypes.UPDATE,
+			})
+		}
+		else{
+			sequelize
+			.query("DELETE FROM orders WHERE idorder = "+req.body.idorder, {
+				raw: true,
+				type: Sequelize.QueryTypes.DELETE,
+			})
+		}
+	});
+	}
+)

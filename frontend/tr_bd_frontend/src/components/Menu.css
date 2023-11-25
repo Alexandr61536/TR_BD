@@ -101,3 +101,7 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+.order_button:disabled{
+    background-color: gray;
+}

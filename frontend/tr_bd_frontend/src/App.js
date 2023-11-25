@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import './App.css';
 import Header from './components/Header'
 import LoginForm from './components/LoginForm'
-import Menu from './components/Menu' 
 import Orders from './components/Orders'
+import ReadyOrders from './components/ReadyOrders'
+import ClientPage from './components/ClientPage';
 
 class App extends Component {
 
@@ -39,8 +40,9 @@ class App extends Component {
 				logined={this.state.mode}
 			/>
         	{(this.state.mode == 'logining') ? <LoginForm ip={this.state.ip} name_role_set={(name, role)=>this.name_role_set(name, role)} /> : 
-			(this.state.user_role=='client') ? <Menu ip={this.state.ip} login={this.state.user_name}/> : 
-			(this.state.user_role=='officiant') ? <Orders ip={this.state.ip}/> : ''}
+			(this.state.user_role=='client') ? <ClientPage ip={this.state.ip} user_name={this.state.user_name}/>: 
+			(this.state.user_role=='cook') ? <Orders ip={this.state.ip}/> : 
+			(this.state.user_role=='officiant')? <ReadyOrders ip={this.state.ip}/> : ''}
       </div>
     );
   } 
