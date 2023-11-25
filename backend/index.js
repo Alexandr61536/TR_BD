@@ -111,14 +111,16 @@ app.listen(PORT, () => {
 
 app.post('/api/Menu', (req, res) => {
 	sequelize
-	.query("SELECT * from clients_orders_dishes WHERE login = '" + req.body.login + "'", {
+	.query("SELECT * from get_clients_orders_dishes_by_login('" + req.body.login + "')", { /// TABLE FUNCTION and VIEW are used
 		raw: true,
 		type: Sequelize.QueryTypes.SELECT,
 	})
 	.then(search_result=>{
-		dish.findAll({raw: true}).then(dishes=>{
-			res.json({data: dishes, unfinished_orders: search_result.length != 0});
-		  })
+		sequelize
+		.query("SELECT * FROM dishes", {
+			raw: true,
+            type: Sequelize.QueryTypes.SELECT,
+		}).then(dishes => res.json({data: dishes, unfinished_orders: search_result.length != 0}))
 	})
   
 });
@@ -135,12 +137,10 @@ app.post('/api/login', (req, res) => {
 })
 
 app.post('/api/register', (req, res) => {
-  client.create({
-    login: req.body.login,
-    password: req.body.password,
-    role: "client"
-  }).then(()=>{
-    client.findOne({where:{login: req.body.login, password: req.body.password}}).then(clients=>{
+	sequelize
+	.query("CALL register_user('" + req.body.login + "', '" + req.body.password + "', 'client')")
+  	.then(()=>{
+    client.findOne({where:{login: req.body.login, password: req.body.password}}).then(clients=>{ //ORM is used
       if (clients){
         res.json({"accepted": "y", "role": clients.role});
       }
@@ -152,22 +152,18 @@ app.post('/api/register', (req, res) => {
 })
 
 app.post('/api/order', (req, res) => {
-	order.create({
-		update_time: sequelize.fn('NOW')
-	})
-	.then(adding_order=>{
+	sequelize
+	.query("SELECT * FROM create_order()", {raw: true,
+	type: Sequelize.QueryTypes.SELECT,})
+	.then(creating_result=>{
+		let idorder=creating_result[0].create_order;
 		for (let i=0; i < req.body.dishes.length; i++)
 		{
-			dish_order.create({
-				idorder: adding_order.idorder,
-				dish: req.body.dishes[i]
-			})
+			sequelize
+			.query("CALL create_dish_order('"+idorder+"', '"+req.body.dishes[i]+"')")
 		}
-    client.update({idorder: adding_order.idorder}, 
-      {where: {
-        login: req.body.login
-        }
-      })
+	sequelize
+			.query("CALL add_order_to_client('"+req.body.login+"', '"+idorder+"')")
 	})
 })
 
@@ -182,10 +178,7 @@ app.get('/api/orders', (req, res) => {
 
   app.post('/api/order_ready', (req, res) => {
 	sequelize
-    .query("UPDATE orders SET state = 'cooked', update_time = NOW() WHERE idorder = "+req.body.idorder, {
-        raw: true,
-        type: Sequelize.QueryTypes.UPDATE,
-    })
+	.query("CALL change_order_state("+req.body.idorder+", 'cooked')");
 })
 
 app.get('/api/ready_orders', (req, res) => {
@@ -207,14 +200,6 @@ app.get('/api/ready_orders', (req, res) => {
 		}
 	  );
 	});
-  
-	app.post('/api/order_ready', (req, res) => {
-	  sequelize
-	  .query("UPDATE orders SET state = 'cooked', update_time = NOW() WHERE idorder = "+req.body.idorder, {
-		  raw: true,
-		  type: Sequelize.QueryTypes.UPDATE,
-	  })
-  })
 
   app.post('/api/order_payed', (req, res) => {
 	sequelize
@@ -225,17 +210,11 @@ app.get('/api/ready_orders', (req, res) => {
 	.then((result) => {
 		if (result.length === 0){
 			sequelize
-			.query("UPDATE orders SET state = 'payed', update_time = NOW() WHERE idorder = "+req.body.idorder, {
-				raw: true,
-				type: Sequelize.QueryTypes.UPDATE,
-			})
+			.query("CALL change_order_state("+req.body.idorder+", 'payed')");
 		}
 		else{
 			sequelize
-			.query("DELETE FROM orders WHERE idorder = "+req.body.idorder, {
-				raw: true,
-				type: Sequelize.QueryTypes.DELETE,
-			})
+			.query("CALL delete_order("+req.body.idorder+")");
 		}
 	});
 })
@@ -270,17 +249,11 @@ app.post('/api/order_got', (req, res) => {
 	.then((result) => {
 		if (result.length === 0){
 			sequelize
-			.query("UPDATE orders SET state = 'got', update_time = NOW() WHERE idorder = "+req.body.idorder, {
-				raw: true,
-				type: Sequelize.QueryTypes.UPDATE,
-			})
+			.query("CALL change_order_state("+req.body.idorder+", 'got')");
 		}
 		else{
 			sequelize
-			.query("DELETE FROM orders WHERE idorder = "+req.body.idorder, {
-				raw: true,
-				type: Sequelize.QueryTypes.DELETE,
-			})
+			.query("CALL delete_order("+req.body.idorder+")");
 		}
 	});
 	}
