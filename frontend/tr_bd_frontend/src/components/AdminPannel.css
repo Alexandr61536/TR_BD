@@ -9,7 +9,7 @@
 
 .UsersTable{
     border-radius: 30px;
-    width: 60%;
+    width: 90%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
     background-color:rgb(209, 171, 241);
@@ -22,11 +22,11 @@
 }
 
 .UsersTable tr td{
-    font-size: 25px;
+    font-size: 15px;
 }
 
 .UsersTable tr:first-child td{
-    font-size: 30px;
+    /* font-size: 30px; */
     padding: 3px;
     border-bottom: 3px solid rgb(92, 0, 173); 
 }
@@ -57,7 +57,7 @@
 /* Минор - определитель при исключении прямого пути */
 
 .UsersTable tr:first-child{
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .UsersTable tr td{
@@ -66,7 +66,7 @@
 
 .UsersTable tr td:first-child{
     width: 10%;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .UsersTable tr td:last-child{
@@ -76,7 +76,7 @@
 .DeleteButton{
     margin: auto;
     height: 30px;
-    width: 80px;
+    width: 30px;
     background-color: rgb(173, 0, 0);
     border: 0px;
     border-radius: 6px;
@@ -172,8 +172,9 @@
 .register_inputs_container{
     padding-top: 10px;
     margin: auto;
-    width: 20vw;
-    height: 230px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
     background-color: rgba(135, 107, 160, 0.687);
     border-radius: 30px;
 }

@@ -10,7 +10,8 @@ import AdminPannel from './components/AdminPannel';
 class App extends Component {
 
   state={
-	ip: '127.0.0.1',
+	// ip: '127.0.0.1',
+	ip: '10.217.8.239',
     mode: "unlogined",
 	role: ""
   }

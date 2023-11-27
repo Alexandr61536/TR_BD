@@ -6,7 +6,7 @@ const path = require('node:path');
 
 const app = express();
 app.use(cors())
-app.use(express.static(path.resolve('../frontend/build')));
+app.use(express.static(path.resolve('../frontend/tr_bd_frontend/build')));
 app.use(express.json())
 
 const Sequelize = require("sequelize");
@@ -153,7 +153,7 @@ app.post('/api/register', (req, res) => {
 
 app.post('/api/order', (req, res) => {
 	sequelize
-	.query("SELECT * FROM create_order()", {raw: true,
+	.query("SELECT * FROM create_order()", {raw: true,				// Scalar function is used
 	type: Sequelize.QueryTypes.SELECT,})
 	.then(creating_result=>{
 		let idorder=creating_result[0].create_order;
