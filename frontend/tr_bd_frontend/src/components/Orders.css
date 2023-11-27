@@ -8,7 +8,7 @@
 
 .OrdersTable{
     border-radius: 30px;
-    width: 60%;
+    width: 90%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
     background-color:rgb(209, 171, 241);
@@ -25,7 +25,7 @@
 }
 
 .OrdersTable tr:first-child td{
-    font-size: 30px;
+    /* font-size: 30px; */
     padding: 3px;
     border-bottom: 3px solid rgb(92, 0, 173); 
 }
@@ -53,7 +53,7 @@
     border-left: 0px solid rgb(92, 0, 173); 
 }
 
-/* Минор - определитель при исключении прямого пути */
+
 
 .OrdersTable tr:first-child{
     font-size: 30px;
@@ -65,11 +65,15 @@
 
 .OrdersTable tr td:first-child{
     width: 10%;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .OrdersTable tr td:last-child{
     padding: 10px;
+}
+
+.OrdersTable tr td{
+    width: fit-content;
 }
 
 .ReadyButton{
@@ -88,4 +92,33 @@
 
 .ReadyButton:disabled{
     background-color: gray;
+} 
+
+/* Минор - определитель при исключении прямого пути*/
+
+.orders_subtable tr td{
+    border: 0px solid white !important;
 }
+
+.orders_subtable{
+    width: 100%;
+}
+
+.DeleteOrderButton{
+    margin: auto;
+    margin-top: 20px;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(173, 0, 0);
+    border: 0px;
+    border-radius: 6px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DeleteOrderButton:disabled{
+    background-color: gray;
+} 

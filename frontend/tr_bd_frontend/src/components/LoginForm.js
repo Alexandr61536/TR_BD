@@ -58,7 +58,6 @@ class LoginForm extends Component{
                     <button className='send_register_button' onClick={this.sendregister}>Register</button>
                     {this.state.accepted === 'n' ? <p className='login_status_label'> Failed to login </p> : ''}
                 </div>
-                    
             </div>
         )
     }

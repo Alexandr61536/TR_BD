@@ -1,0 +1,232 @@
+.UsersContainer{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.UsersTable{
+    border-radius: 30px;
+    width: 60%;
+    border: 5px solid rgb(92, 0, 173); 
+    border-spacing: 0px;
+    background-color:rgb(209, 171, 241);
+}
+
+.UsersTable ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.UsersTable tr td{
+    font-size: 25px;
+}
+
+.UsersTable tr:first-child td{
+    font-size: 30px;
+    padding: 3px;
+    border-bottom: 3px solid rgb(92, 0, 173); 
+}
+
+.UsersTable tr:first-child td{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.UsersTable tr:first-child td:first-child{
+    border-left: 0px solid rgb(92, 0, 173); 
+}
+.UsersTable tr td{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.UsersTable tr td{
+    border-bottom: 5px solid rgb(241, 229, 251);
+}
+
+.UsersTable tr:last-child td{
+    border-bottom: 0px solid rgb(241, 229, 251);
+}
+
+.UsersTable tr td:first-child{
+    border-left: 0px solid rgb(92, 0, 173); 
+}
+
+/* Минор - определитель при исключении прямого пути */
+
+.UsersTable tr:first-child{
+    font-size: 30px;
+}
+
+.UsersTable tr td{
+    width: 50%;
+}
+
+.UsersTable tr td:first-child{
+    width: 10%;
+    font-size: 30px;
+}
+
+.UsersTable tr td:last-child{
+    padding: 10px;
+}
+
+.DeleteButton{
+    margin: auto;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(173, 0, 0);
+    border: 0px;
+    border-radius: 6px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* //////////////////////////////////// */
+
+.AdminOrdersContainer{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.AdminOrdersTable{
+    border-radius: 30px;
+    width: 60%;
+    border: 5px solid rgb(92, 0, 173); 
+    border-spacing: 0px;
+    background-color:rgb(209, 171, 241);
+}
+
+.AdminOrdersTable ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.AdminOrdersTable tr td{
+    font-size: 25px;
+}
+
+.AdminOrdersTable tr:first-child td{
+    font-size: 30px;
+    padding: 3px;
+    border-bottom: 3px solid rgb(92, 0, 173); 
+}
+
+.AdminOrdersTable tr:first-child td{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.AdminOrdersTable tr:first-child td:first-child{
+    border-left: 0px solid rgb(92, 0, 173); 
+}
+.AdminOrdersTable tr td{
+    border-left: 3px solid rgb(92, 0, 173); 
+}
+
+.AdminOrdersTable tr td{
+    border-bottom: 5px solid rgb(241, 229, 251);
+}
+
+.AdminOrdersTable tr:last-child td{
+    border-bottom: 0px solid rgb(241, 229, 251);
+}
+
+.AdminOrdersTable tr td:first-child{
+    border-left: 0px solid rgb(92, 0, 173); 
+}
+
+/* Минор - определитель при исключении прямого пути */
+
+.AdminOrdersTable tr:first-child{
+    font-size: 30px;
+}
+
+.AdminOrdersTable tr td{
+    width: 50%;
+}
+
+.AdminOrdersTable tr td:first-child{
+    width: 10%;
+    font-size: 30px;
+}
+
+.AdminOrdersTable tr td:last-child{
+    padding: 10px;
+}
+
+/* /////////////////////////////////////////////////////// */
+
+.RegisterForm{
+    width: 100vw;
+}
+
+.register_inputs_container{
+    padding-top: 10px;
+    margin: auto;
+    width: 20vw;
+    height: 230px;
+    background-color: rgba(135, 107, 160, 0.687);
+    border-radius: 30px;
+}
+
+.register_login_input{
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 15px; 
+    border: 2px solid rgb(41, 0, 78);
+    margin-bottom: 10px;
+}
+
+.register_password_input{
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid rgb(41, 0, 78);
+    margin-bottom: 10px;
+}
+
+.register_role_input{
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid rgb(41, 0, 78);
+    margin-bottom: 10px;
+}
+
+.register_inputs_container *{
+    font-size: 20px;
+}
+
+.admin_send_register_button{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(41, 0, 78);
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    border: 0px;
+    margin: auto;
+}
+
+.admin_send_register_button{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(41, 0, 78);
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    border: 0px;
+    margin: auto;
+    margin-top: 10px;
+}

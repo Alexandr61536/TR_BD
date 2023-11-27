@@ -169,7 +169,8 @@ app.post('/api/order', (req, res) => {
 
 app.get('/api/orders', (req, res) => {
   sequelize
-    .query("SELECT * FROM clients_orders_dishes WHERE state = 'received' ", {
+    // .query("SELECT * FROM clients_orders_dishes WHERE state = 'received' ", {
+	.query("select * from clients_orders_dishes as cod join dishes_products dp on cod.dish = dp.dish  join products on dp.product = products.product WHERE state = 'received'",{
         raw: true,
         type: Sequelize.QueryTypes.SELECT,
     })
@@ -258,3 +259,36 @@ app.post('/api/order_got', (req, res) => {
 	});
 	}
 )
+
+app.get("/api/orders_all", (req, res) => {
+	sequelize
+    .query("SELECT * FROM clients_orders_dishes", {
+        raw: true,
+        type: Sequelize.QueryTypes.SELECT,
+    })
+    .then((result) => res.json({data: result}));
+})
+
+app.post("/api/add_user", (req, res) => {
+	sequelize
+	.query("CALL register_user('" + req.body.login + "', '" + req.body.password + "', '"+req.body.role+"')")
+})
+
+app.get("/api/users", (req, res) => {
+	sequelize
+    .query("SELECT * FROM clients", {
+        raw: true,
+        type: Sequelize.QueryTypes.SELECT,
+    })
+    .then((result) => {res.json({data: result})});
+})
+
+app.post("/api/delete_user", (req, res) => {
+	sequelize
+    .query("CALL delete_user(" + req.body.id + ")")
+})
+
+app.post("/api/delete_order", (req, res) => {
+	sequelize
+	.query("CALL delete_order("+req.body.idorder+")");
+})

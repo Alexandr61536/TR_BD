@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm'
 import Orders from './components/Orders'
 import ReadyOrders from './components/ReadyOrders'
 import ClientPage from './components/ClientPage';
+import AdminPannel from './components/AdminPannel';
 
 class App extends Component {
 
@@ -42,7 +43,8 @@ class App extends Component {
         	{(this.state.mode == 'logining') ? <LoginForm ip={this.state.ip} name_role_set={(name, role)=>this.name_role_set(name, role)} /> : 
 			(this.state.user_role=='client') ? <ClientPage ip={this.state.ip} user_name={this.state.user_name}/>: 
 			(this.state.user_role=='cook') ? <Orders ip={this.state.ip}/> : 
-			(this.state.user_role=='officiant')? <ReadyOrders ip={this.state.ip}/> : ''}
+			(this.state.user_role=='officiant')? <ReadyOrders ip={this.state.ip}/> :
+			(this.state.user_role=='admin')? <AdminPannel ip={this.state.ip} />: ''}
       </div>
     );
   } 
