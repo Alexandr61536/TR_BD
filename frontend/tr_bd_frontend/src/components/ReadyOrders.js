@@ -58,7 +58,7 @@ class ReadyOrders extends Component {
                     <tr>
                         <td>{order.length>0?order[0].idorder:''}</td>
                         <td>{order.length>0?order[0].login:''}</td>
-                        <td><ul>
+                        <td><ul className='dish_list'>
                             {order.map(dish=>(
                             <li>{dish.dish}</li>
                             ))}

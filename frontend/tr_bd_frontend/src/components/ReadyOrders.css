@@ -1,3 +1,7 @@
+.dish_list li{
+    font-size: max(15px, 2.3vw);
+}
+
 .ReadyOrdersContainer{
     margin-top: 60px;
     width: 100%;
@@ -7,7 +11,7 @@
 }
 
 .ReadyOrdersTable{
-    border-radius: 30px;
+    border-radius: 20px;
     width: 60%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
@@ -21,11 +25,11 @@
 }
 
 .ReadyOrdersTable tr td{
-    font-size: 25px;
+    font-size: max(15px, 2vw);
 }
 
 .ReadyOrdersTable tr:first-child td{
-    font-size: 30px;
+    font-size: max(20px, 3vw);
     padding: 3px;
     border-bottom: 3px solid rgb(92, 0, 173); 
 }
@@ -56,7 +60,7 @@
 /* Минор - определитель при исключении прямого пути */
 
 .ReadyOrdersTable tr:first-child{
-    font-size: 30px;
+    font-size: max(20px, 3vw);
 }
 
 .ReadyOrdersTable tr td{
@@ -65,7 +69,7 @@
 
 .ReadyOrdersTable tr td:first-child{
     width: 10%;
-    font-size: 30px;
+    font-size: max(18px, vw);
 }
 
 .ReadyOrdersTable tr td:last-child{
@@ -74,13 +78,13 @@
 
 .PayedButton{
     margin: auto;
-    height: 30px;
-    width: 80px;
+    height: fit-content;
+    width: fit-content;
     background-color: rgb(92, 0, 173);
     border: 0px;
     border-radius: 6px;
     color: white;
-    font-size: 20px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: center;

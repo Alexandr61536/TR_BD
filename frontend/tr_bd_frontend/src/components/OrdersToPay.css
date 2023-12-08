@@ -7,7 +7,7 @@
 }
 
 .OrdersToPay_table{
-    border-radius: 30px;
+    border-radius: 20px;
     width: 40%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
@@ -21,11 +21,11 @@
 }
 
 .OrdersToPay_table tr td{
-    font-size: 25px;
+    font-size: clamp(14px, 2vw, 100vw);
 }
 
 .OrdersToPay_table tr:first-child td{
-    font-size: 30px;
+    font-size: clamp(14px, 2vw, 100vw);
     padding: 3px;
     border-bottom: 3px solid rgb(92, 0, 173); 
 }
@@ -56,7 +56,7 @@
 /* Минор - определитель при исключении прямого пути */
 
 .OrdersToPay_table tr:first-child{
-    font-size: 30px;
+    font-size: clamp(14px, 2vw, 100vw);
 }
 
 .OrdersToPay_table tr td{
@@ -65,7 +65,7 @@
 
 .OrdersToPay_table tr td:first-child{
     width: 10%;
-    font-size: 30px;
+    font-size: clamp(14px, 2vw, 100vw);
 }
 
 .OrdersToPay_table tr td:last-child{

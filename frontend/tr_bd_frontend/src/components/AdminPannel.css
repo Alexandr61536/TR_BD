@@ -8,7 +8,7 @@
 }
 
 .UsersTable{
-    border-radius: 30px;
+    border-radius: 20px;
     width: 90%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
@@ -55,9 +55,12 @@
 }
 
 /* Минор - определитель при исключении прямого пути */
+.UsersTable tr td{
+    font-size: max(15px, 1.5vw);
+}
 
-.UsersTable tr:first-child{
-    /* font-size: 30px; */
+.UsersTable tr:first-child td{
+    font-size: max(20px, 1.8vw);
 }
 
 .UsersTable tr td{
@@ -66,7 +69,6 @@
 
 .UsersTable tr td:first-child{
     width: 10%;
-    /* font-size: 30px; */
 }
 
 .UsersTable tr td:last-child{
@@ -98,7 +100,7 @@
 }
 
 .AdminOrdersTable{
-    border-radius: 30px;
+    border-radius: 20px;
     width: 60%;
     border: 5px solid rgb(92, 0, 173); 
     border-spacing: 0px;
@@ -176,7 +178,7 @@
     height: fit-content;
     padding: 10px;
     background-color: rgba(135, 107, 160, 0.687);
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .register_login_input{

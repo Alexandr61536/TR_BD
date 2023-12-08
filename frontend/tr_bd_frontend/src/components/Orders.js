@@ -99,27 +99,30 @@ class Orders extends Component{
                         
                         
                         <td><table className="orders_subtable">
-                            <tr><td>Dish</td><td>Product</td><td>Expiration date</td></tr>
+                            {/* <tr><td>Dish</td><td>Product</td><td>Expiration date</td></tr> */}
                             {this.group_by_dish(order).map(dish=>(
                                 <tr>
-                                    <td>
-                                        {dish[0].dish}
-                                    </td>
-                                    <td>
-                                        {dish.map(product=>(
+                                    <tr>
+                                        <td colSpan={2}>
+                                            <div className='SubtableDishname'>{dish[0].dish}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {dish.map(product=>(
+                                                <tr>
+                                                    <td>{product.product}</td>
+                                                </tr>
+                                            ))}
+                                        </td>
+                                        <td>
+                                            {dish.map(product=>(
                                             <tr>
-                                                <td>{product.product}</td>
+                                                <td>{product.expiration_date}</td>
                                             </tr>
                                         ))}
-                                    </td>
-                                    <td>
-                                        {dish.map(product=>(
-                                        <tr>
-                                            <td>{product.expiration_date}</td>
-                                        </tr>
-                                    ))}
-                                    </td>
-                                    
+                                        </td>
+                                    </tr>
                                 </tr>
                                 
                             ))}
